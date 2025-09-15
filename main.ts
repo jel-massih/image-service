@@ -23,13 +23,16 @@ export async function resize(
 
 export async function crop(
     url: string,
-    x: number,
-    y: number,
     width: number,
     height: number,
+    x: number,
+    y: number,
 ): Promise<Uint8Array> {
+    if (!width || !height) {
+        throw new Error('Width and height are required');
+    }
     return handleImage(url, (img) => {
-        img.crop(new MagickGeometry(x, y, width, height));
+        img.crop(new MagickGeometry(x ?? 0, y ?? 0, width, height));
     });
 }
 
