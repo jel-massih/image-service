@@ -1,5 +1,6 @@
 import sharp from 'npm:@img/sharp-wasm32@0.34.3';
 
+//FF
 function fetchImage(url: string) {
     return fetch(url).then(res => res.arrayBuffer());
 }
