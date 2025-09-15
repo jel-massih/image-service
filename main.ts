@@ -1,11 +1,27 @@
-import sharp from 'npm:@img/sharp-wasm32@0.34.3';
+import { MagickFormat } from '@imagemagick/magick-wasm';
+import { ImageMagick } from './imagick.ts';
 
-//FF
-function fetchImage(url: string) {
+async function fetchBytes(url: string) {
     return fetch(url).then(res => res.arrayBuffer());
 }
 
-export async function blur(image: string, sigma = 10) {
-    const imageBuffer = await fetchImage(image);
-    return await sharp(imageBuffer).blur(sigma).webp().toBuffer();
+// 3) Example: blur from URL and return PNG bytes.
+export async function blur(
+    url: string,
+    blurRadius = 60,
+    blurSigma = 5,
+): Promise<Uint8Array> {
+    const input = await fetchBytes(url);
+    const output = ImageMagick.read(input, (img): Uint8Array => {
+        // Blur. You can also use img.gaussianBlur(radius, sigma)
+        img.blur(blurRadius, blurSigma);
+
+        // If you want JPEG quality, set it as a PROPERTY (not a function):
+        // img.quality = 80;
+
+        // Encode to PNG and return the bytes.
+        return img.write(MagickFormat.WebP, (data) => data);
+    });
+
+    return output;
 }
