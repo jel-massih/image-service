@@ -29,7 +29,7 @@ export async function crop(
     height: number,
 ): Promise<Uint8Array> {
     return handleImage(url, (img) => {
-        img.crop(new MagickGeometry(width, height, x, y));
+        img.crop(new MagickGeometry(x, y, width, height));
     });
 }
 
