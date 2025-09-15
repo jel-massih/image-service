@@ -9,7 +9,5 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "@img/sharp-wasm32": "0.34.3"
-  }
+  "dependencies": {}
 }
