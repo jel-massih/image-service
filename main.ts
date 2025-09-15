@@ -31,6 +31,7 @@ export async function crop(
     if (!width || !height) {
         throw new Error('Width and height are required');
     }
+    console.log('CROPING WITH: ', width, height);
     return handleImage(url, (img) => {
         img.crop(width, height, Gravity.Center);
     });
