@@ -1,8 +1,10 @@
 // deno.json: { "compilerOptions": { "lib": ["deno.window", "dom"] } }
 // index.ts
 import {
-    ImageMagick as _ImageMagick,
+    ImageMagick,
+    IMagickImage,
     initializeImageMagick,
+    MagickFormat,
 } from "@imagemagick/magick-wasm";
 
 // 1) Load the WASM bytes from the npm package and initialize.
@@ -15,4 +17,18 @@ const wasmBytes = await Deno.readFile(
 // IMPORTANT: You must await this before calling ImageMagick.
 await initializeImageMagick(wasmBytes);
 
-export const ImageMagick = _ImageMagick;
+
+async function fetchBytes(url: string): Promise<Uint8Array> {
+    const response = await fetch(url);
+    const arrayBuffer = await response.arrayBuffer();
+    return new Uint8Array(arrayBuffer);
+}
+
+
+export const handleImage = async (url: string, imageManipulation?: (img: IMagickImage) => void) => {
+    const input = await fetchBytes(url);
+    return ImageMagick.read(input, (img): Uint8Array => {
+        imageManipulation?.(img);
+        return img.write(MagickFormat.WebP, (data) => data);
+    });
+}
