@@ -10,9 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "sharp": "0.34.3"
-  },
-  "optionalDependencies": {
     "@img/sharp-wasm32": "0.34.3"
   }
 }
