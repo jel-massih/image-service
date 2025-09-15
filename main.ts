@@ -1,4 +1,4 @@
-import { MagickFormat, MagickGeometry } from '@imagemagick/magick-wasm';
+import { Gravity, MagickFormat, MagickGeometry } from '@imagemagick/magick-wasm';
 import { handleImage } from './imagick.ts';
 
 export async function blur(
@@ -32,7 +32,7 @@ export async function crop(
         throw new Error('Width and height are required');
     }
     return handleImage(url, (img) => {
-        img.crop(new MagickGeometry(x ?? 0, y ?? 0, width, height));
+        img.crop(width, height, Gravity.Center);
     });
 }
 
