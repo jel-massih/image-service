@@ -11,8 +11,11 @@ export async function blur(
     blurRadius = 60,
     blurSigma = 5,
 ): Promise<Uint8Array> {
+    console.log("BLUR CALLED");
     const input = await fetchBytes(url);
+    console.log("INPUT", input.byteLength);
     const output = ImageMagick.read(input, (img): Uint8Array => {
+        console.log("IMGtryblur");
         // Blur. You can also use img.gaussianBlur(radius, sigma)
         img.blur(blurRadius, blurSigma);
 
@@ -22,6 +25,8 @@ export async function blur(
         // Encode to PNG and return the bytes.
         return img.write(MagickFormat.WebP, (data) => data);
     });
+
+    console.log("OUTPUT", output);
 
     return output;
 }
