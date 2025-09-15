@@ -8,7 +8,7 @@ export async function blur(
 ): Promise<Uint8Array> {
     return handleImage(url, (img) => {
         img.blur(blurRadius, blurSigma);
-    }, MagickFormat.Png);
+    });
 }
 
 export async function resize(

@@ -9,7 +9,7 @@ async function test() {
         console.log('✅ Grayscale successful, output size:', result.byteLength, 'bytes');
         // Save to file using Deno
         await Deno.writeFile('blur-output.png', result);
-        console.log('✅ Saved grayscale image to grayscale-output.webp');
+        console.log('✅ Saved grayscale image to grayscale-output.png');
     } catch (error) {
         console.error('❌ Error:', error);
     }
