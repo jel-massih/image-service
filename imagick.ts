@@ -25,10 +25,10 @@ async function fetchBytes(url: string): Promise<Uint8Array> {
 }
 
 
-export const handleImage = async (url: string, imageManipulation?: (img: IMagickImage) => void) => {
+export const handleImage = async (url: string, imageManipulation?: (img: IMagickImage) => void, format: MagickFormat = MagickFormat.WebP) => {
     const input = await fetchBytes(url);
     return ImageMagick.read(input, (img): Uint8Array => {
         imageManipulation?.(img);
-        return img.write(MagickFormat.WebP, (data) => data);
+        return img.write(format, (data) => data);
     });
 }

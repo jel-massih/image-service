@@ -1,13 +1,14 @@
+import { MagickFormat, MagickGeometry } from '@imagemagick/magick-wasm';
 import { handleImage } from './imagick.ts';
 
 export async function blur(
     url: string,
-    blurRadius = 60,
+    blurRadius = 0,
     blurSigma = 5,
 ): Promise<Uint8Array> {
     return handleImage(url, (img) => {
         img.blur(blurRadius, blurSigma);
-    });
+    }, MagickFormat.Png);
 }
 
 export async function resize(
@@ -28,7 +29,7 @@ export async function crop(
     height: number,
 ): Promise<Uint8Array> {
     return handleImage(url, (img) => {
-        img.crop(width, height, x, y);
+        img.crop(new MagickGeometry(width, height, x, y));
     });
 }
 

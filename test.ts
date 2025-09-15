@@ -1,4 +1,4 @@
-import { blur } from './main.ts';
+import { blur, grayscale } from './main.ts';
 
 async function test() {
     const imageUrl = 'https://httpbin.org/image/jpeg';
@@ -6,10 +6,10 @@ async function test() {
 
     try {
         const result = await blur(imageUrl);
-        console.log('✅ Blur successful, output size:', result.byteLength, 'bytes');
+        console.log('✅ Grayscale successful, output size:', result.byteLength, 'bytes');
         // Save to file using Deno
-        await Deno.writeFile('blurred-output.webp', result);
-        console.log('✅ Saved blurred image to blurred-output.webp');
+        await Deno.writeFile('blur-output.png', result);
+        console.log('✅ Saved grayscale image to grayscale-output.webp');
     } catch (error) {
         console.error('❌ Error:', error);
     }
