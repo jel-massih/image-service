@@ -9,8 +9,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@10.12.1",
   "dependencies": {
-    "sharp": "^0.34.3"
+    "sharp": "0.34.3"
+  },
+  "optionalDependencies": {
+    "@img/sharp-wasm32": "0.34.3"
   }
 }
