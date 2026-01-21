@@ -1,6 +1,6 @@
 import { Gravity, MagickFormat, MagickGeometry } from '@imagemagick/magick-wasm';
 import { handleImage } from './imagick.ts';
-
+//edit
 export const VERSION = '1.0';
 
 export async function blur(
