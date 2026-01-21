@@ -1,3 +1,4 @@
+//
 import { Gravity, MagickFormat, MagickGeometry } from '@imagemagick/magick-wasm';
 import { handleImage } from './imagick.ts';
 //e
